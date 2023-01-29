@@ -1,10 +1,15 @@
-import { addTodo, changeTodo, removeAllTodos } from "./functions";
+import { addTodo, changeTodo, removeAllTodos, sortTodosAlphabetically } from "./functions";
 import { Todo } from "./models/Todo";
 
 let todos: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
 
 document.getElementById("clearTodos")?.addEventListener("click", () => {
   clearTodos(todos);
+});
+
+document.querySelector(".sortTodos")?.addEventListener("click", () => {
+  sortTodosAlphabetically(todos);
+  createHtml(todos);
 });
 
 (document.getElementById("newTodoForm") as HTMLFormElement)?.addEventListener(
@@ -15,13 +20,13 @@ document.getElementById("clearTodos")?.addEventListener("click", () => {
     let todoText: string = (
       document.getElementById("newTodoText") as HTMLInputElement
     ).value;
-    console.log("Todos when creating", todos);
 
     createNewTodo(todoText, todos);
   }
 );
 
-function createNewTodo(todoText: string, todos: Todo[]) {
+
+export function createNewTodo(todoText: string, todos: Todo[]) {
   let result = addTodo(todoText, todos);
 
   if (result.success) {
@@ -31,7 +36,7 @@ function createNewTodo(todoText: string, todos: Todo[]) {
   }
 }
 
-function createHtml(todos: Todo[]) {
+export function createHtml(todos: Todo[]) {
   localStorage.setItem("todos", JSON.stringify(todos));
 
   let todosContainer: HTMLUListElement = document.getElementById(
@@ -57,12 +62,12 @@ function createHtml(todos: Todo[]) {
   }
 }
 
-function toggleTodo(todo: Todo) {
+export function toggleTodo(todo: Todo) {
   changeTodo(todo);
   createHtml(todos);
 }
 
-function displayError(error: string, show: boolean) {
+export function displayError(error: string, show: boolean) {
   let errorContainer: HTMLDivElement = document.getElementById(
     "error"
   ) as HTMLDivElement;
@@ -76,7 +81,7 @@ function displayError(error: string, show: boolean) {
   }
 }
 
-function clearTodos(todos: Todo[]) {
+export function clearTodos(todos: Todo[]) {
   removeAllTodos(todos);
   createHtml(todos);
 }

@@ -18,3 +18,15 @@ export function changeTodo(todo: Todo) {
 export function removeAllTodos(todos: Todo[]) {
   todos.splice(0, todos.length);
 }
+
+export function sortTodosAlphabetically(todos:Todo[]) {
+  todos.sort((a, b) => {
+    if (a.text.toLowerCase < b.text.toLowerCase) {
+      return -1;
+    }
+    if (a.text > b.text) {
+      return 1;
+    }
+    return 0;
+  });}
+
