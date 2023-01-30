@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { Todo } from "../models/Todo";
 import * as functions from "../functions";
 
@@ -37,17 +40,17 @@ test("should remove all the todos from the todos list", () => {
 
   test("should sort todos list alphabetically", () => {
     let testTodos: Todo[] = [
-      {text:"handla mat", done:false},
-      {text:"diska", done:false},
-      {text:"baka bullar", done:false}
+      {text:"handla mat",done:false},
+      {text:"diska",done:false},
+      {text:"baka bullar",done:false}
     ]; 
-
-    let result = [
-        {text: "baka bullar", done:false},
-        {text: "diska", done:false},
-        {text: "handla mat", done:false}
+    functions.sortTodosAlphabetically(testTodos);
+    console.log(testTodos); 
+    let result: Todo[] = [
+        {text:"baka bullar",done:false},
+        {text:"diska",done:false},
+        {text:"handla mat",done:false}
   ];
-  functions.sortTodosAlphabetically(testTodos); 
-  expect(testTodos).toEqual(result);
+  expect(testTodos).toStrictEqual(result);
 });
 
