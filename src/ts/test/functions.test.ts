@@ -3,6 +3,7 @@
  */
 import { Todo } from "../models/Todo";
 import * as functions from "../functions";
+import * as main from "../main";
 
 describe('addTodo tests', () => {
     test("should add todo to array if its text is at least 3 characters long", () => {

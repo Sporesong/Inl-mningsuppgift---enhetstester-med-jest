@@ -51,6 +51,36 @@ describe("createNewTodo tests", () => {
     });
 });
 
+test("should create HTML based on todos", () => {
+  document.body.innerHTML =  `    
+  <form id="newTodoForm">
+  <div>
+    <input type="text" id="newTodoText">
+    <button>Skapa</button>
+    <button type="button" id="clearTodos">Rensa lista</button>
+    <button type="button" class="sortTodos">Sortera a-ö</button>
+  </div>
+  <div id="error" class="error"></div>
+</form>
+<ul id="todos" class="todo"></ul>`
+  const todos: Todo[] = [
+    new Todo("handla mat", false),
+    new Todo("diska", true),
+  ];
+
+  let spy =jest.spyOn(localStorage, "setItem");
+  let spyHtml = jest.spyOn(document, "getElementById");
+
+  main.createHtml(todos);
+  expect(localStorage.setItem).toHaveBeenCalledWith("todos", JSON.stringify(todos));
+  expect(document.getElementById).toHaveBeenCalledWith("todos");
+});
+
+
+
+
+
+
 /*describe('createNewTodo tests', () => {
 
 }
