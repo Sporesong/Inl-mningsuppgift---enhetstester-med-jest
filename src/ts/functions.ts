@@ -24,7 +24,7 @@ export function sortTodosAlphabetically(todos:Todo[]) {
     if (a.text.toLowerCase < b.text.toLowerCase) {
       return -1;
     }
-    if (a.text > b.text) {
+    if (a.text.toLowerCase > b.text.toLowerCase) {
       return 1;
     }
     return 0;

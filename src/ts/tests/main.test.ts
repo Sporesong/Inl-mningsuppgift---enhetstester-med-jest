@@ -1,3 +1,5 @@
+import * as main from "../main";
+
 /*describe('createNewTodo tests', () => {
 
 }
